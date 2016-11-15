@@ -29,6 +29,22 @@
          { title: 'Wrong phone number', duration: '2:15'}
      ]
  };
+
+var albumPettitt = {
+     title: 'The Breaks',
+     artist: 'Matt Pettitt',
+     label: 'Streets 101',
+     year: '2003',
+     albumArtUrl: 'assets/images/album_covers/10.png',
+     songs: [
+         { title: 'Hard knock life', duration: '3:11' },
+         { title: 'Get what you work for', duration: '5:31' },
+         { title: 'Fall down, get up', duration: '1:30'},
+         { title: 'Fast times', duration: '3:14' },
+         { title: 'In the end', duration: '3:55'}
+     ]
+ };
+
 var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -40,15 +56,14 @@ var createSongRow = function(songNumber, songName, songLength) {
  
      return template;
  };
+// Select elements that we want to populate with txt dynamically
+ var albumTitle = document.getElementsByClassName('album-view-title')[0];
+ var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+ var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+ var albumImage = document.getElementsByClassName('album-cover-art')[0];
+ var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
-var setCurrentAlbum = function(album) {
-     // #1
-     var albumTitle = document.getElementsByClassName('album-view-title')[0];
-     var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-     var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-     var albumImage = document.getElementsByClassName('album-cover-art')[0];
-     var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
- 
+var setCurrentAlbum = function(album) { 
      // #2
      albumTitle.firstChild.nodeValue = album.title;
      albumArtist.firstChild.nodeValue = album.artist;
@@ -64,6 +79,15 @@ var setCurrentAlbum = function(album) {
      }
  };
  
- window.onload = function() {
-     setCurrentAlbum(albumPicasso);
- };
+window.onload = function() {
+    setCurrentAlbum(albumPicasso);
+    var albumList = [albumPicasso,albumMarconi,albumPettitt];
+    var index = 1;
+
+    var cover = document.getElementsByClassName('album-cover-art')[0];
+
+    cover.addEventListener("click", function() {
+        setCurrentAlbum(albumList[index]);
+        index = (index + 1) % (albumList.length);
+    });
+};
