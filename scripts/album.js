@@ -216,8 +216,25 @@ $(document).ready(function() {
              var $seekBar = $('.seek-control .seek-bar');
  
              updateSeekPercentage($seekBar, seekBarFillRatio);
+             setCurrentTimeInPlayerBar( this.getTime() );
+            setTotalTimeInPlayerBar( this.getDuration() );
          });
      }
+ };
+
+var setCurrentTimeInPlayerBar = function(currentTime){
+   $('.current-time').text(filterTimeCode(currentTime));
+ };
+ var setTotalTimeInPlayerBar = function(totalTime){
+   $('.total-time').text(filterTimeCode(totalTime));
+ };
+ var filterTimeCode = function(timeInSeconds){
+ 
+  var timeInSecondsParsed = parseFloat( timeInSeconds );
+  var minutes = Math.floor( timeInSecondsParsed / 60 );
+  var seconds = Math.floor( timeInSeconds - minutes * 60);
+  return minutes + ':' + ('0' + seconds).slice(-2);
+ 
  };
 
 var updateSeekPercentage = function($seekBar, seekBarFillRatio) {
