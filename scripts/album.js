@@ -31,7 +31,6 @@ var createSongRow = function(songNumber, songName, songLength) {
 	+'</tr>';
 	var $row = $(template);
 
-
 	var clickHandler = function() {
 
 		if (currentlyPlayingSongNumber !== null) {
@@ -169,7 +168,6 @@ var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></
 var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
 var playerBarPlayButton = '<span class="ion-play"></span>';
 var playerBarPauseButton = '<span class="ion-pause"></span>';
-
 
 var currentAlbum = null;
 var currentlyPlayingSongNumber = null;
